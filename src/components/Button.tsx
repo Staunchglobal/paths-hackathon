@@ -5,7 +5,7 @@ import React from 'react';
 
 const buttonVariants = cva(
   cn(
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium !leading-[1.35] outline-none transition-colors focus:outline-none focus-visible:outline-none active:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium !leading-[1.35] outline-none transition-colors duration-300 ease-in-out focus:outline-none focus-visible:outline-none active:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
   ),
   {
     variants: {
@@ -14,6 +14,7 @@ const buttonVariants = cva(
           'border border-primary-500 bg-primary-500 text-white hover:border-primary-600 hover:bg-primary-600 focus:ring-primary-300 active:border-primary-700 active:bg-primary-700',
         black:
           'border border-black bg-black text-white hover:border-neutral-800 hover:bg-neutral-800 focus:ring-neutral-300 active:border-black active:bg-black',
+        gray: 'border border-primary-100 bg-primary-100 text-primary-200 hover:bg-primary-200 hover:text-primary-300',
         outline:
           'border-input bg-background border border-neutral-200 hover:bg-neutral-50 focus:ring-neutral-100 active:bg-neutral-100',
         link: '!p-0 text-primary-500 underline underline-offset-4 hover:text-primary-600 focus:ring-0',
