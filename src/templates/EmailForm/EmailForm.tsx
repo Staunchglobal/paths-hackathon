@@ -1,5 +1,6 @@
 import { Input } from '@/components';
 import { Button } from '@/components/Button';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import emailjs from 'emailjs-com';
 import React, { useState } from 'react';
 
@@ -10,7 +11,7 @@ const EmailForm = ({
   nextStep: (value: React.SetStateAction<number>) => void;
   prevStep: (value: React.SetStateAction<number>) => void;
 }) => {
-  const [email, setEmail] = useState('');
+  const { email, setEmail } = useMultiStepForm();
   const [error, setError] = useState('');
 
   const validateEmail = (email: string) => {

@@ -3,11 +3,14 @@
 import { Input } from '@/components';
 import { Button } from '@/components/Button';
 import Stepper from '@/components/Stepper/Stepper';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Name = () => {
   const router = useRouter();
+  const { firstName, setFirstName } = useMultiStepForm();
+
   const handleNavigate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push('preferences');
@@ -28,10 +31,14 @@ const Name = () => {
               placeholder="Type your name"
               label="First name"
               inputSize={'lg'}
+              value={firstName}
               name="name"
               maxLength={40}
               required
-              onChange={e => setName(e.target.value)}
+              onChange={e => {
+                setFirstName(e.target.value);
+                setName(e.target.value);
+              }}
             />
             <Button
               disabled={!name}
