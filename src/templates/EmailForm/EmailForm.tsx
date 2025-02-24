@@ -1,5 +1,6 @@
 import { Input } from '@/components';
 import { Button } from '@/components/Button';
+import emailjs from 'emailjs-com';
 import React, { useState } from 'react';
 
 const EmailForm = ({
@@ -31,6 +32,15 @@ const EmailForm = ({
     }
 
     setError('');
+    emailjs.send(
+      'service_wgepapn', // Replace with your EmailJS service ID
+      'template_c55rqih', // Replace with your EmailJS template ID
+      {
+        name: 'Imran',
+        email: email,
+      },
+      'XzqdQ7XrnWiuTmEr0', // Replace with your EmailJS public key
+    );
     nextStep(prev => prev + 1);
   };
 
