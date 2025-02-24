@@ -1,6 +1,5 @@
 import { Checkbox } from '@/components';
 import { Button } from '@/components/Button';
-import Link from 'next/link';
 import React, { useState } from 'react';
 
 const hearAboutUs = [
@@ -32,14 +31,22 @@ const HearAboutUsForm = ({
     });
   };
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    nextStep(prev => prev + 1);
+  };
+
   return (
-    <div>
+    <form onSubmit={handleFormSubmit}>
       <div className="mb-8">
         <h2 className="text-3xl font-bold">
           What type of organizations are you interested in, [Name]?
         </h2>
         <p className="mt-3 text-gray-600">You can add more later.</p>
       </div>
+
+      {/* Hidden but focusable input to allow Enter key submission */}
+      <input type="text" className="absolute h-0 w-0 opacity-0" />
 
       <div className="space-y-4">
         {hearAboutUs.map(option => (
@@ -55,15 +62,15 @@ const HearAboutUsForm = ({
           />
         ))}
       </div>
+
       <Button
-        type="button"
-        variant={'black'}
-        onClick={() => nextStep(prev => prev + 1)}
+        type="submit"
+        variant="black"
         className="mt-10 rounded-lg text-lg font-semibold"
       >
-        <Link href="/education">Continue</Link>
+        Continue
       </Button>
-    </div>
+    </form>
   );
 };
 
