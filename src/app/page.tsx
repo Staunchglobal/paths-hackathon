@@ -1,12 +1,11 @@
-import { Button } from "@/components/Button";
+'use client';
+
+import { PreferencesForm } from '@/templates';
 
 export default function Home() {
   return (
-    <div className="min-h-screen ">
-      This is Paths project
-      <Button variant={"black"} size="lg">
-        {"hello"}
-      </Button>
+    <div className="min-h-screen p-4">
+      <PreferencesForm />
     </div>
   );
 }
