@@ -22,6 +22,7 @@ const OrganizationForm = ({
 
     toggleOrganizationSelection,
     toggleSelectAllOrganizations,
+    firstName,
   } = useMultiStepForm();
   const [showInput, setShowInput] = useState(false);
   const [newPreference, setNewPreference] = useState('');
@@ -38,7 +39,7 @@ const OrganizationForm = ({
     <div>
       <div className="mb-8">
         <h2 className="text-3xl font-bold">
-          What type of organizations are you interested in, [Name]?
+          What type of organizations are you interested in, {firstName}?
         </h2>
         <p className="mt-3 text-gray-600">You can add more later. </p>
       </div>
