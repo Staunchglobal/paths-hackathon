@@ -18,6 +18,7 @@ import {
 } from '@/public/index';
 import { useMask } from '@react-input/mask';
 import { StaticImageData } from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 type selectOption = {
@@ -28,6 +29,11 @@ type selectOption = {
 };
 
 const Education = () => {
+  const router = useRouter();
+  const handleNavigate = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push('submit');
+  };
   const [singleSelectedOption, setSingleSelectedOption] =
     useState<selectOption | null>(null);
   const [year, setYear] = useState('2025');
@@ -121,7 +127,7 @@ const Education = () => {
         </div> */}
         <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
           <Stepper />
-          <form className="w-full max-w-[800px]">
+          <form className="w-full max-w-[800px] px-5" onSubmit={handleNavigate}>
             <h1 className="mb-[35px] text-4xl font-bold">
               Which school did you (or do you) attend?
             </h1>
@@ -133,7 +139,7 @@ const Education = () => {
               onChange={handleSingleSelect}
               placeholder="Choose your option"
             />
-            <div className="item-center mt-[35px] flex gap-[45px]">
+            <div className="item-center mt-[35px] flex flex-col gap-[45px] md:flex-row">
               <div className="flex items-center gap-2">
                 <Checkbox
                   checked={graduated === 'past'}
