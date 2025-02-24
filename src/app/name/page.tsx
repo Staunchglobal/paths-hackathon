@@ -23,6 +23,7 @@ const Name = () => {
             </h1>
 
             <Input
+              placeholder="Type your name"
               label="First name"
               inputSize={'lg'}
               name="name"
