@@ -1,5 +1,9 @@
-'use client';
+import { JoinForm } from '@/templates';
 
 export default function Home() {
-  return <div className="min-h-screen p-4">paths project</div>;
+  return (
+    <>
+      <JoinForm />
+    </>
+  );
 }

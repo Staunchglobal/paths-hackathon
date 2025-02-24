@@ -1,18 +1,50 @@
 'use client';
 
-import { PreferencesForm } from '@/templates';
-import FormLayout from '@/templates/FormLayout/FormLayout';
-import PageLayout from '@/templates/PageLayout/PageLayout';
-import React from 'react';
+import { Input } from '@/components';
+import { Button } from '@/components/Button';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
-const NamePage = () => {
+const Name = () => {
+  const router = useRouter();
+  const handleNavigate = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push('preferences');
+  };
+
+  const [name, setName] = useState('');
   return (
-    <PageLayout>
-      <FormLayout>
-        <PreferencesForm />
-      </FormLayout>
-    </PageLayout>
+    <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
+      <div className="py-5 md:py-2">
+        <div className="flex items-center justify-center">
+          <form onSubmit={handleNavigate}>
+            <h1 className="mb-[40px] text-4xl font-bold">
+              First, what’s your name?
+            </h1>
+
+            <Input
+              placeholder="Type your name"
+              label="First name"
+              inputSize={'lg'}
+              name="name"
+              maxLength={40}
+              required
+              onChange={e => setName(e.target.value)}
+            />
+            <Button
+              disabled={!name}
+              size={'md'}
+              variant={name ? 'black' : 'gray'}
+              className="mt-[40px]"
+              type="submit"
+            >
+              {'Continue'}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default NamePage;
+export default Name;
