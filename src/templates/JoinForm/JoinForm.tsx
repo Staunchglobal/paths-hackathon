@@ -11,7 +11,7 @@ export default function JoinFrom() {
   const router = useRouter();
 
   const handleNavigate = () => {
-    router.push('/preferences');
+    router.push('/name');
   };
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
