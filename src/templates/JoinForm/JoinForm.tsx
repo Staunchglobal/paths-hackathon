@@ -3,15 +3,19 @@
 import { Checkbox } from '@/components';
 import { Button } from '@/components/Button';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function JoinFrom() {
   const [checked, setChecked] = useState('');
+  const router = useRouter();
 
+  const handleNavigate = () => {
+    router.push('/preferences');
+  };
   return (
-    <div className="flex h-full items-center justify-center overflow-y-auto md:h-[calc(100vh-54px)]">
-      <div className="py-5 md:py-0">
+    <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
+      <div className="py-5 md:py-2">
         <div className="flex items-center justify-center">
           <h1
             className="text-center text-[45px] font-extrabold sm:text-[60px]"
@@ -86,15 +90,19 @@ export default function JoinFrom() {
           </label>
         </div>
         <div className="mt-[35px] flex items-center justify-center md:mt-[66px]">
-          <Link href="/preferences">
-            <Button variant={checked ? 'black' : 'gray'} size={'xxl'}>
-              {checked
-                ? checked === 'talent'
-                  ? 'Join as  Talent'
-                  : 'Join as a Client'
-                : 'Create Account'}
-            </Button>
-          </Link>
+          <Button
+            variant={checked ? 'black' : 'gray'}
+            size={'xxl'}
+            className={cn(!checked && 'cursor-not-allowed')}
+            onClick={handleNavigate}
+            disabled={!checked}
+          >
+            {checked
+              ? checked === 'talent'
+                ? 'Join as  Talent'
+                : 'Join as a Client'
+              : 'Create Account'}
+          </Button>
         </div>
 
         <div className="mt-[35px] flex items-center justify-center text-center md:mt-[66px]">
