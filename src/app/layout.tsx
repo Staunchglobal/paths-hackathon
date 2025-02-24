@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"text-primary-900 container mx-auto"}>
-        <div className="px-5 py-3">
+        <div className="px-5 py-3 top-0 sticky bg-white">
           <div className="relative inline-block">
             <h1 className="text-xl font-bold tracking-tight text-black mb-0.5">
               PATHS
