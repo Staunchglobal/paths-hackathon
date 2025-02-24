@@ -111,23 +111,13 @@ const Education = () => {
   console.log(graduated, singleSelectedOption, year);
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
-      <div className="py-5 md:py-2">
-        {/* <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
+      <div className="h-full py-5 md:py-0">
+        <div className="flex w-full flex-col items-center justify-center overflow-y-auto overflow-x-hidden md:min-h-[80vh] lg:w-[800px] lg:overflow-y-hidden">
           <Stepper />
-           
-            <SelectSearch
-              options={items}
-              selected={singleSelectedOption}
-              onChange={handleSingleSelect}
-              placeholder="Choose your option"
-              label="Single Select"
-              name="singleSelect"
-            />
-          </div>
-        </div> */}
-        <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
-          <Stepper />
-          <form className="w-full max-w-[800px] px-5" onSubmit={handleNavigate}>
+          <form
+            className="w-full px-5 lg:max-w-[800px]"
+            onSubmit={handleNavigate}
+          >
             <h1 className="mb-[35px] text-4xl font-bold">
               Which school did you (or do you) attend?
             </h1>
@@ -183,7 +173,9 @@ const Education = () => {
                   I will graduated{' '}
                 </label>
                 <Input
+                  disabled={graduated !== 'future'}
                   ref={inputRef}
+                  required
                   onChange={handleChange}
                   inputSize="md"
                   className="max-w-[85px] text-center"
