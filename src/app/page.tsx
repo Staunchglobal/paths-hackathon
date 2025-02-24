@@ -1,9 +1,12 @@
+'use client';
+
+import { PreferencesForm } from '@/templates';
+
 export default function Home() {
   return (
-    <div className="flex justify-center items-center mt-[200px]">
-      <h1 className="text-5xl font-extrabold" style={{ fontFamily: "Arial" }}>
-        Join as a client or talent
-      </h1>
+    <div className="min-h-screen p-4">
+      
+      <PreferencesForm />
     </div>
   );
 }
