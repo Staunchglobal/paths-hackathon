@@ -38,8 +38,8 @@ const [checked, setChecked] = useState("");
       
       </div>
 <div className="flex justify-center items-center mt-[66px]">
-              <Button variant={"black"}>{checked?checked==="talent"?"Join as  Talent":"Join as a Client":"Create Account"}</Button>
-      </div>
+     <Button variant={"black"} size={"xxl"}>{checked?checked==="talent"?"Join as  Talent":"Join as a Client":"Create Account"}</Button>
+</div>
 
        <div className="text-center mt-[66px]">
    <div className="relative inline-block">
