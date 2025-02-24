@@ -2,6 +2,7 @@
 
 import { Input } from '@/components';
 import { Button } from '@/components/Button';
+import Stepper from '@/components/Stepper/Stepper';
 import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -19,8 +20,9 @@ const Name = () => {
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
       <div className="py-5 md:py-2">
-        <div className="flex items-center justify-center">
-          <form onSubmit={handleNavigate}>
+        <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
+          <Stepper />
+          <form onSubmit={handleNavigate} className="w-full max-w-[800px]">
             <h1 className="mb-[40px] text-4xl font-bold">
               First, what’s your name?
             </h1>
