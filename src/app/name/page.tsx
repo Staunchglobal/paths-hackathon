@@ -22,7 +22,7 @@ const Name = () => {
       <div className="py-5 md:py-2">
         <div className="flex w-full flex-col items-center justify-center overflow-x-hidden lg:w-[800px]">
           <Stepper />
-          <form onSubmit={handleNavigate} className="w-full max-w-[800px]">
+          <form onSubmit={handleNavigate} className="w-full max-w-[800px] px-5">
             <h1 className="mb-[40px] text-4xl font-bold">
               First, what’s your name?
             </h1>
