@@ -25,7 +25,6 @@ interface SingleSelectSearchProps {
 
 const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
   options,
-  placeholder = 'Select an option...',
   onChange,
   value = null,
   disabled = false,

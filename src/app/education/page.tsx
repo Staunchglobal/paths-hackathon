@@ -5,6 +5,7 @@ import { Input } from '@/components';
 import { Button } from '@/components/Button';
 import Stepper from '@/components/Stepper/Stepper';
 import { cn } from '@/lib/utils';
+import { useMask } from '@react-input/mask';
 import React, { useState } from 'react';
 
 type selectOption = {
@@ -97,7 +98,10 @@ const Education = () => {
   const handleSingleSelect = (option: selectOption | null) => {
     setSingleSelectedOption(option);
   };
-
+  const inputRef = useMask({
+    mask: '20DD',
+    replacement: { D: /\d/ },
+  });
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
       <div className="py-5 md:py-2">
@@ -172,6 +176,7 @@ const Education = () => {
                   I will graduated{' '}
                 </label>
                 <Input
+                  ref={inputRef}
                   onChange={handleChange}
                   inputSize="md"
                   className="max-w-[85px] text-center"
@@ -184,14 +189,14 @@ const Education = () => {
             </div>
             <Button
               disabled={
-                !singleSelectedOption?.id ||
+                !singleSelectedOption ||
                 !graduated ||
                 graduated === 'future' ||
                 !year
               }
               size={'md'}
               variant={
-                !singleSelectedOption?.id ||
+                !singleSelectedOption ||
                 !graduated ||
                 graduated === 'future' ||
                 !year
