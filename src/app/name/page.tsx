@@ -20,9 +20,9 @@ const Name = () => {
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
       <div className="py-5 md:py-2">
-        <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
+        <div className="flex w-full flex-col items-center justify-center overflow-x-hidden lg:w-[800px]">
           <Stepper />
-          <form onSubmit={handleNavigate} className="w-full max-w-[800px]">
+          <form onSubmit={handleNavigate} className="w-full max-w-[800px] px-5">
             <h1 className="mb-[40px] text-4xl font-bold">
               First, what’s your name?
             </h1>

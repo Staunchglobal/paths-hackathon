@@ -202,7 +202,7 @@ const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
       {/* Dropdown options */}
       {isOpen && (
         <div
-          className={`absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border bg-white shadow-lg`}
+          className={`absolute z-20 my-2 max-h-[200px] w-full overflow-y-auto rounded-md border bg-white py-1 shadow-lg`}
         >
           {filteredOptions.length > 0 ? (
             filteredOptions.map(option => (
