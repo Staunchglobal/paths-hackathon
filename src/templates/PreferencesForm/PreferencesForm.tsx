@@ -1,4 +1,6 @@
 import { Checkbox } from '@/components';
+import { Button } from '@/components/Button';
+import Link from 'next/link';
 import React from 'react';
 
 import AddPreferenceForm from './AddPreferenceForm';
@@ -69,6 +71,12 @@ const PreferencesForm = () => {
           />
         )}
       </div>
+      <Button
+        variant={'black'}
+        className="mt-10 rounded-lg text-lg font-semibold"
+      >
+        <Link href="/organization">Continue</Link>
+      </Button>
     </div>
   );
 };
