@@ -14,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={'container mx-auto overflow-y-auto text-primary-900'}>
+      <body
+        className={
+          'container mx-auto overflow-y-auto overflow-x-hidden text-primary-900'
+        }
+      >
         <div className="sticky top-0 bg-white px-5 py-3">
           <div className="relative inline-block">
             <h1 className="mb-0.5 text-xl font-bold tracking-tight text-black">
