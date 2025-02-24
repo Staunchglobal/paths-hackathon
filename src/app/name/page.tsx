@@ -5,7 +5,7 @@ import FormLayout from '@/templates/FormLayout/FormLayout';
 import PageLayout from '@/templates/PageLayout/PageLayout';
 import React from 'react';
 
-const Preferences = () => {
+const NamePage = () => {
   return (
     <PageLayout>
       <FormLayout>
@@ -15,4 +15,4 @@ const Preferences = () => {
   );
 };
 
-export default Preferences;
+export default NamePage;
