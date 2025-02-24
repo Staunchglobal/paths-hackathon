@@ -51,6 +51,12 @@ const OrganizationForm = () => {
 
   return (
     <div>
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold">
+          What type of organizations are you interested in, [Name]?
+        </h2>
+        <p className="mt-3 text-gray-600">You can add more later. </p>
+      </div>
       <div className="flex flex-wrap gap-2">
         {organizations.map(value => (
           <PreferenceButton
