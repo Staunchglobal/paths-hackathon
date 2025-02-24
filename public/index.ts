@@ -1,2 +1,11 @@
 export { default as LoadingSpinner } from './svgs/LoadingSpinner';
 export { default as X } from './svgs/cross.svg';
+export { default as Harvard } from './Png/harvard.png';
+export { default as Kellogg } from './Png/kellogg.png';
+export { default as Haas } from './Png/haas.png';
+export { default as Columbia } from './Png/colambia.png';
+export { default as Wharton } from './Png/Wharton.png';
+export { default as Strathmore } from './Png/strathmore.png';
+export { default as Stern } from './Png/stern.png';
+export { default as Said } from './Png/said.png';
+export { default as Austrialia } from './Png/australia.png';

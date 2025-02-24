@@ -5,35 +5,36 @@ import { Input } from '@/components';
 import { Button } from '@/components/Button';
 import Stepper from '@/components/Stepper/Stepper';
 import { cn } from '@/lib/utils';
+import {
+  Austrialia,
+  Columbia,
+  Haas,
+  Harvard,
+  Kellogg,
+  Said,
+  Stern,
+  Strathmore,
+  Wharton,
+} from '@/public/index';
 import { useMask } from '@react-input/mask';
+import { StaticImageData } from 'next/image';
 import React, { useState } from 'react';
 
 type selectOption = {
   value: string;
   label: string;
   id: string;
-  imageURL?: string;
+  imageURL?: string | StaticImageData;
 };
 
 const Education = () => {
   const [singleSelectedOption, setSingleSelectedOption] =
     useState<selectOption | null>(null);
-  const [year, setYear] = useState('');
+  const [year, setYear] = useState('2025');
   const [graduated, setGraduated] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { value } = e.target;
-
-    if (!/^\d*$/.test(value)) return;
-
-    if (value.length > 4) {
-      value = value.slice(0, 4);
-    }
-
-    if (value.length === 4 && Number(value) < 2025) {
-      value = '2025';
-    }
-
+    const { value } = e.target;
     setYear(value);
   };
 
@@ -42,56 +43,55 @@ const Education = () => {
       id: 'columbia',
       value: 'columbia',
       label: 'Columbia Business School',
-      imageURL:
-        'https://www.google.com/imgres?q=columbia%20business%20school%20icon%20url&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2Fthumb%2Ff%2Ff3%2FColumbia_Business_School_logo.svg%2F1200px-Columbia_Business_School_logo.svg.png&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FColumbia_Business_School&docid=Hkbg2HeiSnzCQM&tbnid=UuB06S_1oFaoqM&vet=12ahUKEwjzvsigz9yLAxV0SvEDHTI6MWIQM3oECGUQAA..i&w=1200&h=1206&hcb=2&ved=2ahUKEwjzvsigz9yLAxV0SvEDHTI6MWIQM3oECGUQAA',
+      imageURL: Columbia,
     },
     {
       id: 'wharton',
       value: 'wharton',
       label: 'The Wharton School',
-      imageURL: 'https://example.com/images/wharton-logo.png',
+      imageURL: Wharton,
     },
     {
       id: 'harvard',
       value: 'harvard',
       label: 'Harvard Business School',
-      imageURL: 'https://example.com/images/harvard-logo.png',
+      imageURL: Harvard,
     },
     {
       id: 'kellogg',
       value: 'kellogg',
       label: 'Kellogg School of Management',
-      imageURL: 'https://example.com/images/kellogg-logo.png',
+      imageURL: Kellogg,
     },
     {
       id: 'stern',
       value: 'stern',
       label: 'Stern School of Business',
-      imageURL: 'https://example.com/images/stern-logo.png',
+      imageURL: Stern,
     },
     {
       id: 'said',
       value: 'said',
       label: 'Saïd Business School',
-      imageURL: 'https://example.com/images/said-logo.png',
+      imageURL: Said,
     },
     {
       id: 'agsm',
       value: 'agsm',
       label: 'Australian Graduate School of Management',
-      imageURL: 'https://example.com/images/agsm-logo.png',
+      imageURL: Austrialia,
     },
     {
       id: 'haas',
       value: 'haas',
       label: 'Haas School of Business',
-      imageURL: 'https://example.com/images/haas-logo.png',
+      imageURL: Haas,
     },
     {
       id: 'strathmore',
       value: 'strathmore',
       label: 'Strathmore Business School',
-      imageURL: 'https://example.com/images/strathmore-logo.png',
+      imageURL: Strathmore,
     },
   ];
 
@@ -102,6 +102,7 @@ const Education = () => {
     mask: '20DD',
     replacement: { D: /\d/ },
   });
+  console.log(graduated, singleSelectedOption, year);
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
       <div className="py-5 md:py-2">
@@ -189,17 +190,15 @@ const Education = () => {
             </div>
             <Button
               disabled={
-                !singleSelectedOption ||
-                !graduated ||
-                graduated === 'future' ||
-                !year
+                !singleSelectedOption?.value ||
+                graduated === '' ||
+                (graduated === 'future' && year.length < 4)
               }
               size={'md'}
               variant={
-                !singleSelectedOption ||
-                !graduated ||
-                graduated === 'future' ||
-                !year
+                !singleSelectedOption?.value ||
+                graduated === '' ||
+                (graduated === 'future' && year.length < 4)
                   ? 'gray'
                   : 'black'
               }

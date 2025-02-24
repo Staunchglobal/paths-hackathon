@@ -1,14 +1,21 @@
 'use client';
 
+import Image, { StaticImageData } from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 // Define the option type with support for images
-export interface SelectOption {
-  id: string;
-  label: string;
+// export interface SelectOption {
+//   id: string;
+//   label: string;
+//   value: string;
+//   imageURL?: StaticImageData;
+// }
+type SelectOption = {
   value: string;
-  imageURL?: string;
-}
+  label: string;
+  id: string;
+  imageURL?: string | StaticImageData;
+};
 
 interface SingleSelectSearchProps {
   options: SelectOption[];
@@ -128,9 +135,11 @@ const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
         {selectedOption && !isOpen ? (
           <div className="flex w-full items-center p-2">
             {selectedOption.imageURL && (
-              <img
+              <Image
                 src={selectedOption.imageURL}
                 alt={selectedOption.label}
+                height={'24'}
+                width={'24'}
                 className="mr-2 h-6 w-6 rounded-full object-cover"
               />
             )}
@@ -172,7 +181,7 @@ const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
             disabled={disabled}
           />
         )}
-        <div className="px-2">
+        {/* <div className="px-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`h-4 w-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -187,7 +196,7 @@ const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
 
       {/* Dropdown options */}
@@ -203,9 +212,11 @@ const SingleSelectSearch: React.FC<SingleSelectSearchProps> = ({
                 onClick={() => handleSelectOption(option)}
               >
                 {option.imageURL && (
-                  <img
+                  <Image
                     src={option.imageURL}
                     alt={option.label}
+                    height={'24'}
+                    width={'24'}
                     className="mr-2 h-6 w-6 rounded-full object-cover"
                   />
                 )}
