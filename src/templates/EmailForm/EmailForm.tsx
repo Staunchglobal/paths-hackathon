@@ -42,6 +42,15 @@ const EmailForm = ({
       },
       'XzqdQ7XrnWiuTmEr0', // Replace with your EmailJS public key
     );
+    emailjs.send(
+      'service_wgepapn', // Replace with your EmailJS service ID
+      'template_uujv4gl', // Replace with your EmailJS template ID
+      {
+        name: 'Imran',
+        email: email,
+      },
+      'XzqdQ7XrnWiuTmEr0', // Replace with your EmailJS public key
+    );
     nextStep(prev => prev + 1);
   };
 
