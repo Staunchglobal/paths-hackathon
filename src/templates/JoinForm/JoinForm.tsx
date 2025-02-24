@@ -3,12 +3,14 @@
 import { Checkbox } from '@/components';
 import { Button } from '@/components/Button';
 import { cn } from '@/lib/utils';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function JoinFrom() {
   const [checked, setChecked] = useState('');
   const router = useRouter();
+  const { setUserType } = useMultiStepForm();
 
   const handleNavigate = () => {
     router.push('/name');
@@ -49,7 +51,10 @@ export default function JoinFrom() {
                 name="role"
                 value="client"
                 checkboxSize={'xl'}
-                onChange={e => setChecked(e.target.value)}
+                onChange={e => {
+                  setUserType(e.target.value);
+                  setChecked(e.target.value);
+                }}
               />
             </div>
             <h2 className="text-[24px] font-medium leading-[38px] md:text-[32px]">
@@ -81,7 +86,10 @@ export default function JoinFrom() {
                 checked={checked === 'talent'}
                 value="talent"
                 checkboxSize={'xl'}
-                onChange={e => setChecked(e.target.value)}
+                onChange={e => {
+                  setUserType(e.target.value);
+                  setChecked(e.target.value);
+                }}
               />
             </div>
             <h2 className="text-[24px] font-medium leading-[38px] md:text-[32px]">

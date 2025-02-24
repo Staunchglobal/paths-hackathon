@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button';
 import InputOTP from '@/components/InputOtp/InputOtp';
 import ResendTimer from '@/components/ResendTimer/ResendTimer';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import React, { useState } from 'react';
 
 const OtpForm = ({
@@ -8,8 +9,9 @@ const OtpForm = ({
 }: {
   prevStep: (value: React.SetStateAction<number>) => void;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [otp, setOtp] = useState('');
-  console.log('🚀 ~ otp:', otp);
+  const { email } = useMultiStepForm();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,6 @@ const OtpForm = ({
 
   const handleResend = async () => {
     try {
-      // Resend OTP logic
     } catch (err) {
       console.error(err);
     }
@@ -39,7 +40,7 @@ const OtpForm = ({
       <div className="mb-8">
         <h2 className="text-3xl font-bold">Verify your email</h2>
         <p className="mt-3 text-gray-600">
-          Enter the verification code sent to your email [insert email].
+          Enter the verification code sent to your email {email}.
         </p>
       </div>
       <InputOTP
