@@ -111,8 +111,8 @@ const Education = () => {
   console.log(graduated, singleSelectedOption, year);
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
-      <div className="h-full py-5 md:py-3">
-        <div className="flex w-full flex-col items-center justify-center overflow-y-auto overflow-x-hidden md:min-h-[calc(100vh-54px)] lg:w-[800px] lg:overflow-y-hidden">
+      <div className="h-full py-5 md:py-0">
+        <div className="flex w-full flex-col items-center justify-center overflow-y-auto overflow-x-hidden md:min-h-[80vh] lg:w-[800px] lg:overflow-y-hidden">
           <Stepper />
           <form
             className="w-full px-5 lg:max-w-[800px]"

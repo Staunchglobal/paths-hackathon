@@ -1,5 +1,7 @@
 import { Input } from '@/components';
 import { Button } from '@/components/Button';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
+import emailjs from 'emailjs-com';
 import React, { useState } from 'react';
 
 const EmailForm = ({
@@ -9,7 +11,7 @@ const EmailForm = ({
   nextStep: (value: React.SetStateAction<number>) => void;
   prevStep: (value: React.SetStateAction<number>) => void;
 }) => {
-  const [email, setEmail] = useState('');
+  const { email, setEmail } = useMultiStepForm();
   const [error, setError] = useState('');
 
   const validateEmail = (email: string) => {
@@ -31,6 +33,15 @@ const EmailForm = ({
     }
 
     setError('');
+    emailjs.send(
+      'service_wgepapn', // Replace with your EmailJS service ID
+      'template_c55rqih', // Replace with your EmailJS template ID
+      {
+        name: 'Imran',
+        email: email,
+      },
+      'XzqdQ7XrnWiuTmEr0', // Replace with your EmailJS public key
+    );
     nextStep(prev => prev + 1);
   };
 

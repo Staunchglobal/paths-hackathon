@@ -1,37 +1,30 @@
+'use client';
+
 import { Checkbox } from '@/components';
 import { Button } from '@/components/Button';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
 import PreferenceButton from '../PreferencesForm/PreferenceButton';
 import AddOrganizationButton from './AddOrganizationButton';
 
-const initialOrganizations = [
-  'Woman-Led 👩‍✈️',
-  'Artificial Intelligence 🤖',
-  'Startups 🚀',
-  'Disruptors 🧨',
-  'Sustainable 🌳',
-  'B Corp Certified ♻️',
-  'Tech Unicorns 🚀',
-  'Social Impact 🌎',
-  'Direct-to-Consumer 🛍️',
-  'FinTech 💳',
-  'Lifestyle 👟',
-  'Subscription-Based 🔄',
-  'High Growth 📈',
-  'Transformation 🦋',
-  'Large Enterprise 🚂',
-];
+const OrganizationForm = ({
+  prevStep,
+}: {
+  prevStep: (value: React.SetStateAction<number>) => void;
+}) => {
+  const {
+    organizations,
+    selectedOrganizations,
+    selectAll,
+    setOrganizations,
 
-const OrganizationForm = () => {
-  const [organizations, setOrganizations] = useState(initialOrganizations);
-  const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
-    [],
-  );
+    toggleOrganizationSelection,
+    toggleSelectAllOrganizations,
+  } = useMultiStepForm();
   const [showInput, setShowInput] = useState(false);
   const [newPreference, setNewPreference] = useState('');
-  const [selectAll, setSelectAll] = useState(false);
 
   const handleAddPreference = () => {
     if (newPreference.trim() !== '') {
@@ -39,14 +32,6 @@ const OrganizationForm = () => {
       setNewPreference('');
       setShowInput(false);
     }
-  };
-
-  const toggleSelection = (organization: string) => {
-    setSelectedOrganizations(prev =>
-      prev.includes(organization)
-        ? prev.filter(item => item !== organization)
-        : [...prev, organization],
-    );
   };
 
   return (
@@ -63,7 +48,7 @@ const OrganizationForm = () => {
             key={value}
             label={value}
             isSelected={selectedOrganizations.includes(value)}
-            onClick={() => toggleSelection(value)}
+            onClick={() => toggleOrganizationSelection(value)}
           />
         ))}
 
@@ -85,22 +70,26 @@ const OrganizationForm = () => {
       </div>
       <div className="mt-10">
         <Checkbox
-          label="Select All"
-          checked={selectAll}
           type="checkbox"
           id="selectAll"
-          onChange={() => {
-            setSelectAll(!selectAll);
-            setSelectedOrganizations(selectAll ? [] : [...organizations]);
-          }}
+          label="Select All"
+          checked={selectAll}
+          onChange={toggleSelectAllOrganizations}
         />
       </div>
-      <Button
-        variant={'black'}
-        className="mt-10 rounded-lg text-lg font-semibold"
-      >
-        <Link href="/education">Continue</Link>
-      </Button>
+      <div className="mt-10 flex items-center gap-2">
+        <Button
+          type="button"
+          variant={'gray'}
+          onClick={() => prevStep(1)}
+          className="rounded-lg text-lg font-semibold"
+        >
+          Back
+        </Button>
+        <Button variant={'black'} className="rounded-lg text-lg font-semibold">
+          <Link href="/education">Continue</Link>
+        </Button>
+      </div>
     </div>
   );
 };

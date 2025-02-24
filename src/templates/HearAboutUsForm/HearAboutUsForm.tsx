@@ -1,6 +1,7 @@
 import { Checkbox } from '@/components';
 import { Button } from '@/components/Button';
-import React, { useState } from 'react';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
+import React from 'react';
 
 const hearAboutUs = [
   'Friend or colleague',
@@ -17,19 +18,22 @@ const HearAboutUsForm = ({
 }: {
   nextStep: (value: React.SetStateAction<number>) => void;
 }) => {
-  const [selectedOptions, setSelectedOptions] = useState(new Set());
+  // const [selectedOptions, setSelectedOptions] = useState(new Set());
+  const { selectedHearAboutUsOptions, toggleHearAboutUsOption, firstName } =
+    useMultiStepForm(); // <-- Use Zustand state
+  console.log('🚀 ~ selectedHearAboutUsOptions:', selectedHearAboutUsOptions);
 
-  const handleCheckboxChange = (option: string) => {
-    setSelectedOptions(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(option)) {
-        newSet.delete(option);
-      } else {
-        newSet.add(option);
-      }
-      return newSet;
-    });
-  };
+  // const handleCheckboxChange = (option: string) => {
+  //   setSelectedOptions(prev => {
+  //     const newSet = new Set(prev);
+  //     if (newSet.has(option)) {
+  //       newSet.delete(option);
+  //     } else {
+  //       newSet.add(option);
+  //     }
+  //     return newSet;
+  //   });
+  // };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +44,7 @@ const HearAboutUsForm = ({
     <form onSubmit={handleFormSubmit}>
       <div className="mb-8">
         <h2 className="text-3xl font-bold">
-          What type of organizations are you interested in, [Name]?
+          What type of organizations are you interested in, {firstName}?
         </h2>
         <p className="mt-3 text-gray-600">You can add more later.</p>
       </div>
@@ -57,8 +61,8 @@ const HearAboutUsForm = ({
             name="role"
             label={option}
             value={option}
-            checked={selectedOptions.has(option)}
-            onChange={() => handleCheckboxChange(option)}
+            checked={selectedHearAboutUsOptions.includes(option)}
+            onChange={() => toggleHearAboutUsOption(option)}
           />
         ))}
       </div>

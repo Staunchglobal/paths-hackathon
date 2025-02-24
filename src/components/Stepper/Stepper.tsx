@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 const steps = [
   { label: 'Name', path: '/name' },
   { label: 'Preferences', path: '/preferences' },
-  { label: 'Organization', path: '/organization' },
   { label: 'Education', path: '/education' },
   { label: 'Submit', path: '/submit' },
 ];
@@ -23,7 +22,7 @@ const Stepper = () => {
                 'relative flex h-10 w-10 items-center justify-center rounded-full font-semibold text-white',
                 index <= currentStep ? 'bg-black' : 'bg-primary-200',
                 index < steps.length - 1 &&
-                  `after:absolute after:left-full after:top-1/2 after:h-1 after:w-[calc(100%+80px)] after:-translate-y-1/2 ${
+                  `${
                     index < currentStep
                       ? 'after:bg-black'
                       : 'after:bg-primary-100'
