@@ -1,5 +1,13 @@
 import { preferencesData } from '@/templates/PreferencesForm/preferencesData';
+import { StaticImageData } from 'next/image';
 import { create } from 'zustand';
+
+type selectOption = {
+  value: string;
+  label: string;
+  id: string;
+  imageURL?: string | StaticImageData;
+};
 
 interface FormState {
   step: number;
@@ -22,7 +30,9 @@ interface FormState {
   organizations: string[];
   selectedOrganizations: string[];
   selectAll: boolean;
-
+  singleSelectedOption: selectOption | null;
+  year: string;
+  graduated: string;
   // Actions
   setStep: (step: number) => void;
   setUserType: (type: string) => void;
@@ -46,6 +56,10 @@ interface FormState {
   toggleOrganizationSelection: (organization: string) => void;
   toggleSelectAllOrganizations: () => void;
   toggleHearAboutUsOption: (option: string) => void;
+
+  setSingleSelectedOption: (option: selectOption | null) => void;
+  setYear: (year: string) => void;
+  setGraduated: (graduated: string) => void;
 }
 
 export const useMultiStepForm = create<FormState>(set => ({
@@ -200,4 +214,10 @@ export const useMultiStepForm = create<FormState>(set => ({
         ? state.selectedHearAboutUsOptions.filter(item => item !== option)
         : [...state.selectedHearAboutUsOptions, option],
     })),
+  singleSelectedOption: null,
+  year: '2025',
+  graduated: '',
+  setSingleSelectedOption: option => set({ singleSelectedOption: option }),
+  setYear: year => set({ year }),
+  setGraduated: graduated => set({ graduated }),
 }));

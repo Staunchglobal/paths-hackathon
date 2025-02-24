@@ -16,10 +16,11 @@ import {
   Strathmore,
   Wharton,
 } from '@/public/index';
+import { useMultiStepForm } from '@/stores/useMultiStepForm';
 import { useMask } from '@react-input/mask';
 import { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 
 type selectOption = {
   value: string;
@@ -29,19 +30,19 @@ type selectOption = {
 };
 
 const Education = () => {
+  const {
+    singleSelectedOption,
+    year,
+    graduated,
+    setSingleSelectedOption,
+    setYear,
+    setGraduated,
+  } = useMultiStepForm();
+
   const router = useRouter();
   const handleNavigate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push('submit');
-  };
-  const [singleSelectedOption, setSingleSelectedOption] =
-    useState<selectOption | null>(null);
-  const [year, setYear] = useState('2025');
-  const [graduated, setGraduated] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setYear(value);
   };
 
   const businessSchools: selectOption[] = [
@@ -104,6 +105,11 @@ const Education = () => {
   const handleSingleSelect = (option: selectOption | null) => {
     setSingleSelectedOption(option);
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setYear(e.target.value);
+  };
+
   const inputRef = useMask({
     mask: '20DD',
     replacement: { D: /\d/ },
@@ -112,19 +118,6 @@ const Education = () => {
   return (
     <div className="flex h-full items-center justify-center overflow-y-auto md:min-h-[calc(100vh-54px)]">
       <div className="py-5 md:py-2">
-        {/* <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
-          <Stepper />
-           
-            <SelectSearch
-              options={items}
-              selected={singleSelectedOption}
-              onChange={handleSingleSelect}
-              placeholder="Choose your option"
-              label="Single Select"
-              name="singleSelect"
-            />
-          </div>
-        </div> */}
         <div className="flex w-full flex-col items-center justify-center lg:w-[800px]">
           <Stepper />
           <form className="w-full max-w-[800px] px-5" onSubmit={handleNavigate}>
